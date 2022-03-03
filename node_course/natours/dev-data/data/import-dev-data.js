@@ -6,7 +6,7 @@ const Tour = require('../../models/tourModel');
 dotenv.config({ path: '../../config.env' });
 
 const DB = process.env.DATABASE.replace(
-  '<PASSWORD>',
+  '<password>',
   process.env.DATABASE_PASSWORD
 );
 
@@ -15,10 +15,9 @@ mongoose
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
+    useUnifiedTopology: true,
   })
-  .then((con) => {
-    console.log('DB connection successful');
-  });
+  .then((con) => console.log('DB connection successful'));
 
 // Read JSON File
 const tours = JSON.parse(
@@ -33,6 +32,7 @@ const importData = async () => {
   } catch (err) {
     console.log(err);
   }
+  process.exit();
 };
 
 // Delete all data from db
