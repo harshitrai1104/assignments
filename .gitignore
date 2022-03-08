@@ -7624,4 +7624,4 @@ node_modules/jsx-ast-utils/lib/getProp.js
 node_modules/jsx-ast-utils/lib/getPropValue.js
 package.json
 package-lock.json
-node_modules
+node_modules/
