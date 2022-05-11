@@ -1,9 +1,6 @@
 const fs = require('fs');
-
-//File
-const tours = JSON.parse(
-  fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
-);
+const User = require('../models/userModel');
+const catchAsync = require('../utils/catchAsync');
 
 // Route Handlers
 exports.getAllUsers = (req, res) => {
@@ -27,12 +24,13 @@ exports.updateUser = (req, res) => {
   });
 };
 
-exports.deleteUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined',
+exports.deleteUser = catchAsync(async (req, res) => {
+  const data = await User.deleteMany();
+  res.status(200).json({
+    status: 'Success',
+    data,
   });
-};
+});
 exports.getUser = (req, res) => {
   res.status(500).json({
     status: 'error',
